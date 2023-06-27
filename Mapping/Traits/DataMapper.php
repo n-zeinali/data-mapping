@@ -14,9 +14,9 @@ trait DataMapper
      * @return EntityInterface
      * @throws ReflectionException
      */
-    public function startMapping(mixed $data, EntityInterface $entity): EntityInterface
+    public function startMapping(mixed $data, EntityInterface $entity, String $type): EntityInterface
     {
-        return $this->mapProperties($entity, $data);
+        return $this->mapProperties($entity, $data, $type);
     }
 
 

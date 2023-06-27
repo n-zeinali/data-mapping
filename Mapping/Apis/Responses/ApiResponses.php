@@ -15,14 +15,14 @@ class ApiResponses
      * @param $url
      * @return array
      */
-    public function getData($url): array
+    public function getData($url, $type): array
     {
         // switch between XML And JSON Files
 
         $driver = [
             'json'=> JsonData::class,
             'xml'=> XmlData::class
-        ][pathinfo(storage_path('app/' . $url), PATHINFO_EXTENSION)] ?? dd("Unsupported Data");
+        ][$type] ?? dd("Unsupported Data");
 
         return $driver::getData(Storage::disk('local')->get($url));
     }

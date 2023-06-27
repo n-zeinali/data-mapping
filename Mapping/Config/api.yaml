@@ -2,14 +2,14 @@ json:
   fullname:
     key: full_name
     type: string
-  username: 
-    key: username
+  username:
+    key: user_name
     type: string
-  
+
 xml:
   fullname:
-    key: full__name 
+    key: full__name
     type: string
-  username: 
+  username:
     key: user__name
     type: string

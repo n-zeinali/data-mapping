@@ -24,21 +24,14 @@ trait GetPropertiesNameAndValue
      * @return array
      * @throws ReflectionException
      */
-    private function getPropertyNameAndValue($property, array $result): array
+    private function getPropertyValue($proEqual, array $result) : mixed
     {
-        $propertyAnnotation = $this->getPropertyDataMapper($property);
-        $json_field = $propertyAnnotation->json_field;
-
-        if (!$json_field) {
-            return [$property->getName(), null];
+        if (!$proEqual['key']) {
+            return null;
         }
-        $value = $result[$json_field];
+        $value = $result[$proEqual['key']];
 
-        if (!is_array($value)) {
-            return [$property->getName(), $value];
-        }
-
-        return [$property->getName(), $this->mapProperties(new ($property->getType()->getName()), $value)];
+        return  $value;
 
 
     }
