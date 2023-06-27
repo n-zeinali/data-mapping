@@ -1,0 +1,15 @@
+json:
+  fullname:
+    key: full_name
+    type: string
+  username: 
+    key: username
+    type: string
+  
+xml:
+  fullname:
+    key: full__name 
+    type: string
+  username: 
+    key: user__name
+    type: string
