@@ -20,15 +20,15 @@ class DataMapperController extends Controller
      * @param EntityInterface $entity
      * @return void
      */
-    #[NoReturn] public function mapping(ApiResponses $apiResponses, EntityInterface $entity, Request $request, string $type): void
+     public function mapping(ApiResponses $apiResponses, EntityInterface $entity, Request $request, string $type)
     {
         $file = 'api.'.$type;
-        $data = $apiResponses->getData($file);
+        $data = $apiResponses->getData($file, $type);
         try {
-            $result = $this->startMapping($data, $entity);
+            $result = $this->startMapping($data, $entity, $type);
 
             echo 'API Input';
-            dump($apiResponses->getData($file));
+            dump($data);
             echo 'Mapping Result';
             dd($result);
 

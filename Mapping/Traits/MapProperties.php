@@ -16,12 +16,14 @@ trait MapProperties
      * @return EntityInterface
      * @throws ReflectionException
      */
-    private function mapProperties(EntityInterface $entity, mixed $data): EntityInterface
+    private function mapProperties(EntityInterface $entity, mixed $data, String $type): EntityInterface
     {
-        $properties = app(GetPropertiesReflector::class)->getClassPropertiesByReflection($entity);
-        foreach ($properties as $property) {
-            list($name, $value) = $this->getPropertyNameAndValue($property, $data);
-            $this->propertyAccessor->setValue($entity, $name, $value);
+        //Parse YAML file and get json mapper from it
+        $properties = Yaml::parseFile(__DIR__.'/../Config/api.yaml')[$type];
+        //$properties = app(GetPropertiesReflector::class)->getClassPropertiesByReflection($entity);
+        foreach ($properties as $proName => $proEqual) {
+            $proEqualValue = $this->getPropertyValue($proEqual, $data);
+            $this->propertyAccessor->setValue($entity, $proName, $proEqualValue);
         }
         return $entity;
     }
