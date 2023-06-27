@@ -11,3 +11,6 @@ Trait Traits\DataMapper is using Annotation and reflection packages to map data 
 I made a Mapping Module and bind it to laravel and made each directories separate
 Try to make Single responsible each trait and class
 I used strategy design pattern to be able to support xml and json data
+
+# Version 2
+read relation of data from YAML file which is made in config folder.
