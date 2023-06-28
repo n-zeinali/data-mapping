@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -21,6 +22,20 @@ class DataMapperController extends Controller
      * @return void
      */
      public function mapping(ApiResponses $apiResponses, EntityInterface $entity, Request $request, string $type)
+     {
+         $file = 'api.' . $type;
+         $data = $apiResponses->getData($file, $type);
+         try {
+             $result = $this->startMapping($data, $entity, $type);
+
+             return response($result->toJson(), 200);
+
+         } catch (\Exception $e) {
+             return response($e->getMessage(), 500);
+         }
+     }
+
+        public function test(ApiResponses $apiResponses, EntityInterface $entity, Request $request, string $type)
     {
         $file = 'api.'.$type;
         $data = $apiResponses->getData($file, $type);
@@ -33,9 +48,8 @@ class DataMapperController extends Controller
             dd($result);
 
         } catch (\Exception $e) {
-           echo  "Error : ". $e->getMessage();
+            echo  "Error : ". $e->getMessage();
         }
-
 
     }
 

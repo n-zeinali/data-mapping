@@ -68,4 +68,16 @@ class User implements EntityInterface
         return $this;
     }
 
+    /**
+     * Gives a JSON representation of this user
+     * @return string
+     */
+    public function toJson() {
+        return json_encode([
+            'fullname' => $this->fullname,
+            'username' => $this->username
+        ]);
+    }
+
+
 }
